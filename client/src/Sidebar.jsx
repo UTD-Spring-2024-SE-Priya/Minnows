@@ -55,8 +55,9 @@ export default function Sidebar() {
         p={4}
         borderRadius="1.5em"
         opacity={9}
+        boxShadow={'lg'}
       >
-        <VStack spacing={2} align="center" mt={10}>
+        <VStack spacing={2} align="center" mt={0}>
           <Heading>HandShake</Heading>
           {menuItems.map((item) => (
             <Button
