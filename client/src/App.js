@@ -1,7 +1,7 @@
 import React from "react";
-import Sidebar from "./component/Sidebar/Sidebar";
 import { ChakraProvider, Box } from "@chakra-ui/react";
 import { Route, Routes } from "react-router-dom";
+import Sidebar from "./Sidebar";
 
 export default function App() {
   return (
