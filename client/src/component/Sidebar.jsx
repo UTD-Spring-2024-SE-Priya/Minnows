@@ -24,6 +24,7 @@ export default function Sidebar() {
     { name: "Profile", icon: CgProfile, path: "/profile" },
     { name: "Leaderboard", icon: "", path: "/leaderboard" },
     { name: "Post", icon: "", path: "/post" },
+    { name: "Store", icon: "", path: "/Store" },
   ];
 
   const handleItemClick = (name, path) => {
