@@ -1,18 +1,32 @@
 import React from "react";
 import { ChakraProvider, Box } from "@chakra-ui/react";
 import { Route, Routes } from "react-router-dom";
-import Sidebar from "./Sidebar";
+
+import Leaderboard from "./component/Leaderboard/Leaderboard.jsx";
+import Sidebar from "./component/Sidebar";
 import PostPage from "./component/Post/PostPage";
+import Login from "./component/Login/Login.jsx";
+import Homepage from "./component/Homepage.jsx";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function App() {
+  const { isAuthenticated, isLoading } = useAuth0();
+
   return (
     <ChakraProvider>
-      <Box h={"100vh"} w={"100vw"} display={"flex"}>
+      <Box h={"100vh"} w={"100vw"} display={"flex"} bg={"white"}>
         <Box h={"100%"} w={"20%"}>
-          <Sidebar />
+          {isAuthenticated && <Sidebar />}
         </Box>
+
         <Box h={"100%"} w={"80%"}>
-          <PostPage></PostPage>
+          <Routes>
+            <Route path="/" element={!isAuthenticated && <Homepage />} />
+            <Route
+              path="/leaderboard"
+              element={isAuthenticated ? <Leaderboard /> : <Homepage />}
+            />
+          </Routes>
         </Box>
       </Box>
     </ChakraProvider>

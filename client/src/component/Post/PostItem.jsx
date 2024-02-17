@@ -21,7 +21,7 @@ export default function PostItem() {
   //do a dropdown for the detail for the comments
 
   return (
-    <Box w={"full"} p={"1em"} boxShadow={"lg"} borderRadius={"lg"}>
+    <Box w={"full"} p={"1em"} boxShadow={"lg"} borderRadius={"lg"} bg={"white"}>
       <Box display={"flex"}>
         <Avatar></Avatar>
         <Text mr={"1em"} fontSize={"1em"}>

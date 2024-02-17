@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AiTwotoneHome } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { FaBookReader, FaSignOutAlt } from "react-icons/fa";
-//import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 import {
   Box,
   VStack,
@@ -12,29 +12,32 @@ import {
   Text,
   Heading,
   Center,
+  Link,
 } from "@chakra-ui/react";
+
 
 export default function Sidebar() {
   const [selected, setSelected] = useState("Home");
-  //const navigate = useNavigate();
-  //const { logout } = useAuth0();
+  const navigate = useNavigate();
+  const { logout } = useAuth0();
 
   const menuItems = [
     { name: "Home", icon: AiTwotoneHome, path: "/home" },
     { name: "Profile", icon: CgProfile, path: "/profile" },
     { name: "Leaderboard", icon: "", path: "/leaderboard" },
+    { name: "Thread", icon: "", path: "/thread" },
     { name: "Post", icon: "", path: "/post" },
     { name: "Store", icon: "", path: "/Store" },
   ];
 
   const handleItemClick = (name, path) => {
     setSelected(name);
-    //navigate(path);
-    // if (name !== "Logout") {
-    //   navigate(path);
-    // } else {
-    //   logout({ returnTo: window.location.origin });
-    // }
+    navigate(path);
+    if (name !== "Logout") {
+      navigate(path);
+    } else {
+      logout({ returnTo: window.location.origin });
+    }
   };
 
   const activeBgColor = "green.300";
@@ -44,7 +47,7 @@ export default function Sidebar() {
   const inactiveTextColor = "black";
 
   return (
-    <Center position={"absolute"} zIndex={100} w={"20%"} h={"100%"}>
+    <Center position={"fixed"} w={"20%"} h={"100vh"} top={"0"}>
       <Box
         position="fixed"
         h="94vh"
@@ -56,10 +59,12 @@ export default function Sidebar() {
         p={4}
         borderRadius="1.5em"
         boxShadow={"lg"}
-        opacity={9}
+        bg={"white"}
       >
-        <VStack spacing={2} align="center" mt={10}>
-          <Heading>LearnLift</Heading>
+        <VStack spacing={2} align="center">
+          <Heading>
+            <Link _hover={{}}>Minnows</Link>
+          </Heading>
           {menuItems.map((item) => (
             <Button
               key={item.name}
@@ -91,11 +96,12 @@ export default function Sidebar() {
           ))}
         </VStack>
         <VStack mb={"1em"}>
-          {/* <Button
+
+          <Button
             leftIcon={<FaSignOutAlt />}
             variant="ghost"
             colorScheme="gray"
-            //onClick={() => handleItemClick("Logout")}
+            onClick={() => handleItemClick("Logout")}
             borderRadius="full"
             size="lg"
             aria-label="Logout"
@@ -104,7 +110,7 @@ export default function Sidebar() {
             width="full"
           >
             Logout
-          </Button> */}
+          </Button>
         </VStack>
       </Box>
     </Center>
