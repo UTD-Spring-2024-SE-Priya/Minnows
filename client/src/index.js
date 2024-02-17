@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
+import { ChakraProvider } from "@chakra-ui/react";
 
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
@@ -18,7 +19,9 @@ root.render(
       }}
     >
       <BrowserRouter>
-        <App />
+        <ChakraProvider>
+          <App />
+        </ChakraProvider>
       </BrowserRouter>
     </Auth0Provider>
   </React.StrictMode>

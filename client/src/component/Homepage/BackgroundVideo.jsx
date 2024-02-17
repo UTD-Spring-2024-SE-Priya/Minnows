@@ -1,8 +1,6 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
-import fishSwimming from "../assets/fishSwimming.mp4";
-
-import Login from "./Login/Login";
+import fishSwimming from "../../assets/fishSwimming.mp4";
 
 export default function Homepage() {
   return (
@@ -13,9 +11,8 @@ export default function Homepage() {
       position="fixed"
       top="0"
       left="0"
+  
     >
-      <Login></Login>
-
       <video
         autoPlay
         loop
