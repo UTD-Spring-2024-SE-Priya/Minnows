@@ -13,9 +13,11 @@ export default function App() {
 
   return (
     <Box h={"100vh"} w={"100vw"} display={"flex"} bg={"white"}>
-      <Box h={"100%"} w={"20%"}>
-        {isAuthenticated && <Sidebar />}
-      </Box>
+      {isAuthenticated && (
+        <Box h={"100%"} w={"20%"}>
+          <Sidebar />
+        </Box>
+      )}
 
       <Box h={"100%"} w={"80%"}>
         <Routes>

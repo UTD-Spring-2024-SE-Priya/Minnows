@@ -1,20 +1,44 @@
 import React from "react";
 import { Box, Icon, Heading } from "@chakra-ui/react";
+import fishSwimming from "../../assets/fishSwimming.mp4";
+import Login from "./Login";
 
-import Login from "../Login/Login";
-import Backgroundvideo from "./BackgroundVideo.jsx";
-
-export default function Homepage() {
+const BackgroundVideo = ({ src }) => {
   return (
-    <Box>
-      <Backgroundvideo />
-
-      <Box display="flex" justifyContent="space-between">
-        <Box>
-          <Icon></Icon>
-          <Heading>Minnows</Heading>
+    <Box position="relative" height="100vh" width="100vw" overflow="hidden">
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+      >
+        <source src={fishSwimming} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <Box position="absolute" top="0" left="0" right="0" bottom="0">
+        <Box display="flex" justifyContent="space-between">
+          <Box display="flex" justifyContent="start" alignItems="center">
+            <Icon fontSize={"lg"}></Icon>
+            <Heading>Minnows</Heading>
+          </Box>
+        </Box>
+        <Box
+          w={"full"}
+          display={"flex"}
+          mt={"20%"}
+          justifyContent={"center"}
+          fontSize={"2.5em"}
+          fontWeight={"bold"}
+        >
+          <Box w>A new and fun way to succeed from your class!</Box>
+        </Box>
+        <Box display={"flex"} justifyContent={"center"}>
+          <Login />
         </Box>
       </Box>
     </Box>
   );
-}
+};
+
+export default BackgroundVideo;

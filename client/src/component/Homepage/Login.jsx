@@ -5,5 +5,13 @@ import { Button } from "@chakra-ui/react";
 export default function Login() {
   const { loginWithRedirect } = useAuth0();
 
-  return <Button onClick={() => loginWithRedirect()}>Log In</Button>;
+  return (
+    <Button
+      onClick={() => loginWithRedirect()}
+      bg={""}
+      _hover={{ bg: "navy", color: "white" }}
+    >
+      Get Started
+    </Button>
+  );
 }
