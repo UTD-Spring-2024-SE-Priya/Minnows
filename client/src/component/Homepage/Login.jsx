@@ -10,6 +10,7 @@ export default function Login() {
       onClick={() => loginWithRedirect()}
       bg={""}
       _hover={{ bg: "navy", color: "white" }}
+      fontWeight={'bold'}
     >
       Get Started
     </Button>
