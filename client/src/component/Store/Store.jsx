@@ -46,7 +46,7 @@ const StoreItem = ({ item }) => {
   const redeemItem = () => {
     toast({
       title: `You redeemed ${item.title}!`,
-      description: "This is where redemption logic would be implemented.",
+      description: "Congulations, Have the nice day",
       status: "success",
       duration: 5000,
       isClosable: true,

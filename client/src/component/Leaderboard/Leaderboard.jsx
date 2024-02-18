@@ -13,7 +13,13 @@ import { FaTrophy } from "react-icons/fa";
 
 export default function Leaderboard() {
   return (
-    <Box h={"100vh"} w={{ base: "full", md: 60 }} boxShadow="lg">
+    <Box
+      h={"100vh"}
+      w={{ base: "full", md: 60 }}
+      boxShadow="lg"
+      position={"absolute"}
+      right={0}
+    >
       <VStack spacing={5} align="stretch">
         <Box mt={5}>
           <Center>
