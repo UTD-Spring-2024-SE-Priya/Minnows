@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiTwotoneHome } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
-import { FaBookReader, FaSignOutAlt } from "react-icons/fa";
+import { FaBookReader, FaSignOutAlt, FaStore } from "react-icons/fa";
+import { MdOutlineLeaderboard } from "react-icons/md";
+import { GiTalk } from "react-icons/gi";
+
 import { useAuth0 } from "@auth0/auth0-react";
 import {
   Box,
@@ -25,10 +28,9 @@ export default function Sidebar() {
   const menuItems = [
     { name: "Home", icon: AiTwotoneHome, path: "/home" },
     { name: "Profile", icon: CgProfile, path: "/profile" },
-    { name: "Leaderboard", icon: "", path: "/leaderboard" },
-    { name: "Thread", icon: "", path: "/thread" },
-    { name: "Post", icon: "", path: "/post" },
-    { name: "Store", icon: "", path: "/Store" },
+    { name: "Leaderboard", icon: MdOutlineLeaderboard, path: "/leaderboard" },
+    { name: "Post", icon: GiTalk, path: "/post" },
+    { name: "Store", icon: FaStore, path: "/Store" },
   ];
 
   const handleItemClick = (name, path) => {

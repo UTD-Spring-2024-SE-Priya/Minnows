@@ -8,11 +8,12 @@ import {
   Badge,
   Icon,
   useToast,
+  Divider,
 } from "@chakra-ui/react";
 
+import Topbar from "./Topbar";
 import { PiCoinVerticalFill } from "react-icons/pi";
 
-// Mock data for store items
 const storeItems = [
   {
     id: 1,
@@ -97,12 +98,16 @@ const StoreItem = ({ item }) => {
 
 const Store = () => {
   return (
-    <Box p={5}>
-      <SimpleGrid columns={{ sm: 2, md: 3 }} spacing={8}>
-        {storeItems.map((item) => (
-          <StoreItem key={item.id} item={item} />
-        ))}
-      </SimpleGrid>
+    <Box>
+      <Topbar></Topbar>
+      <Divider></Divider>
+      <Box p={"1em"}>
+        <SimpleGrid columns={{ sm: 2, md: 3 }} spacing={8}>
+          {storeItems.map((item) => (
+            <StoreItem key={item.id} item={item} />
+          ))}
+        </SimpleGrid>
+      </Box>
     </Box>
   );
 };
