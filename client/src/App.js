@@ -7,25 +7,22 @@ import Leaderboard from "./component/Leaderboard/Leaderboard.jsx";
 import Sidebar from "./component/Sidebar";
 import PostPage from "./component/Post/PostPage";
 import Homepage from "./component/Homepage/Homepage.jsx";
-import Fish from "./component/Playgound/Fishes.jsx";
+import Fishes from "./component/Playgound/Fishes.jsx";
+import Store from "./component/Store/Store.jsx";
 
 export default function App() {
   const { isAuthenticated, isLoading } = useAuth0();
 
   return (
     <Box h={"100vh"} w={"100vw"} display={"flex"} bg={"white"}>
-      {isAuthenticated && (
-        <Box h={"100%"} w={"20%"}>
-          <Sidebar />
-        </Box>
-      )}
+      {isAuthenticated && <Sidebar />}
 
-      <Box h={"100%"} w={"80%"}>
+      <Box w={"80vw"} ml={"20vw"}>
         <Routes>
           <Route path="/" element={!isAuthenticated && <Homepage />} />
           <Route
             path="/home"
-            element={isAuthenticated ? <Fish /> : <Homepage />}
+            element={isAuthenticated ? <Fishes /> : <Homepage />}
           />
           <Route
             path="/leaderboard"
@@ -34,6 +31,10 @@ export default function App() {
           <Route
             path="/post"
             element={isAuthenticated ? <PostPage /> : <Homepage />}
+          />
+          <Route
+            path="/store"
+            element={isAuthenticated ? <Store /> : <Homepage />}
           />
         </Routes>
       </Box>

@@ -15,7 +15,6 @@ import {
   Link,
 } from "@chakra-ui/react";
 
-
 export default function Sidebar() {
   const [selected, setSelected] = useState("Home");
   const navigate = useNavigate();
@@ -47,7 +46,7 @@ export default function Sidebar() {
   const inactiveTextColor = "black";
 
   return (
-    <Center position={"fixed"} w={"20%"} h={"100vh"} top={"0"}>
+    <Center position={"fixed"} w={"20vw"} h={"100vh"} top={"0"}>
       <Box
         position="fixed"
         h="94vh"
@@ -96,7 +95,6 @@ export default function Sidebar() {
           ))}
         </VStack>
         <VStack mb={"1em"}>
-
           <Button
             leftIcon={<FaSignOutAlt />}
             variant="ghost"

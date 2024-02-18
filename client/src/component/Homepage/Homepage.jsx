@@ -6,7 +6,13 @@ import Login from "./Login";
 
 const BackgroundVideo = ({ src }) => {
   return (
-    <Box position="relative" height="100vh" width="100vw" overflow="hidden">
+    <Box
+      position="absolute"
+      height="100vh"
+      width="100vw"
+      overflow="hidden"
+      left={"0"}
+    >
       <video
         autoPlay
         loop
@@ -41,7 +47,7 @@ const BackgroundVideo = ({ src }) => {
         >
           <Box w>A new and fun way to succeed from your class!</Box>
         </Box>
-        <Box display={"flex"} justifyContent={"center"} >
+        <Box display={"flex"} justifyContent={"center"}>
           <Login />
         </Box>
       </Box>
