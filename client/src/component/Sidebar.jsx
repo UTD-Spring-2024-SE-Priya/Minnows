@@ -13,7 +13,9 @@ import {
   Heading,
   Center,
   Link,
+  Image,
 } from "@chakra-ui/react";
+import logo from "../assets/logo.png";
 
 export default function Sidebar() {
   const [selected, setSelected] = useState("Home");
@@ -61,7 +63,8 @@ export default function Sidebar() {
         bg={"white"}
       >
         <VStack spacing={2} align="center">
-          <Heading>
+          <Heading display={"flex"} alignItems={"center"}>
+            <Image src={logo} w={"1em"} h={"1em"} />
             <Link _hover={{}}>Minnows</Link>
           </Heading>
           {menuItems.map((item) => (

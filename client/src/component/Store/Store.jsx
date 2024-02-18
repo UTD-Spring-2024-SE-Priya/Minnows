@@ -6,8 +6,11 @@ import {
   Text,
   Button,
   Badge,
+  Icon,
   useToast,
 } from "@chakra-ui/react";
+
+import { PiCoinVerticalFill } from "react-icons/pi";
 
 // Mock data for store items
 const storeItems = [
@@ -16,24 +19,24 @@ const storeItems = [
     title: "Travel Ticket",
     description: "get a flight",
     price: 70,
-    imageUrl: "time_travel_ticket.png",
-    coinIcon: "coin_icon.png",
+    imageUrl:
+      "https://flyingmag.sfo3.digitaloceanspaces.com/flyingma/wp-content/uploads/2022/06/23090933/AdobeStock_249454423-scaled.jpeg",
   },
   {
     id: 2,
     title: "30-Day Subscription",
     description: "Premium",
-    price: 5000,
-    imageUrl: "premium_subscription.png",
-    coinIcon: "coin_icon.png",
+    price: 20,
+    imageUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png",
   },
   {
     id: 3,
     title: "T-Shirt",
     description: "High quality t-shirts",
-    price: 6000,
-    imageUrl: "tshirt.png",
-    coinIcon: "coin_icon.png",
+    price: 40,
+    imageUrl:
+      "https://i.etsystatic.com/36038936/r/il/cccf8e/4067511429/il_570xN.4067511429_i6e7.jpg",
   },
 ];
 
@@ -57,26 +60,33 @@ const StoreItem = ({ item }) => {
       overflow="hidden"
       bg="gray.700"
       color="white"
+      p={"0.5em"}
     >
       <Image
         src={item.imageUrl}
-        alt={`${item.title}`}
         fit="cover"
         w="100%"
-        h="200px"
+        h={"13em"}
+        borderRadius={"lg"}
       />
 
-      <Box p={5}>
+      <Box p={"0.5em"}>
         <Badge borderRadius="full" px="2" colorScheme="teal">
           New
         </Badge>
-        <Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
-          {item.title}
-        </Text>
-        <Text mt={2}>{item.description}</Text>
-        <Box mt={2}>
+        <Box
+          display={"flex"}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+        >
+          <Box>
+            <Text fontSize="xl" fontWeight="semibold" lineHeight="short">
+              {item.title}
+            </Text>
+            <Text>{item.description}</Text>
+          </Box>
           <Button onClick={redeemItem} colorScheme="orange" size="sm">
-            <Image src={item.coinIcon} boxSize="20px" ml={2} />
+            <Icon as={PiCoinVerticalFill} color={"yellow"}></Icon>
             {item.price} Coins
           </Button>
         </Box>
