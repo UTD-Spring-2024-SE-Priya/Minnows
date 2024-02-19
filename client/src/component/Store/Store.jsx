@@ -59,7 +59,7 @@ const StoreItem = ({ item }) => {
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
-      bg="gray.700"
+      bg="gray.200"
       color="white"
       p={"0.5em"}
     >
@@ -80,7 +80,7 @@ const StoreItem = ({ item }) => {
           justifyContent={"space-between"}
           alignItems={"center"}
         >
-          <Box>
+          <Box color={'black'}>
             <Text fontSize="xl" fontWeight="semibold" lineHeight="short">
               {item.title}
             </Text>

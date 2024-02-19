@@ -18,8 +18,6 @@ export default function PostItem() {
   const likes = 0;
   const commentsNumber = 0;
 
-  //do a dropdown for the detail for the comments
-
   return (
     <Box w={"full"} p={"1em"} boxShadow={"lg"} borderRadius={"lg"} bg={"white"}>
       <Box display={"flex"}>

@@ -9,6 +9,7 @@ import PostPage from "./component/Post/PostPage";
 import Homepage from "./component/Homepage/Homepage.jsx";
 import Fishes from "./component/Playgound/Fishes.jsx";
 import Store from "./component/Store/Store.jsx";
+import Profile from "./component/Profile/Profile.jsx";
 
 export default function App() {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -35,6 +36,10 @@ export default function App() {
           <Route
             path="/store"
             element={isAuthenticated ? <Store /> : <Homepage />}
+          />
+          <Route
+            path="/profile"
+            element={isAuthenticated ? <Profile /> : <Homepage />}
           />
         </Routes>
       </Box>
