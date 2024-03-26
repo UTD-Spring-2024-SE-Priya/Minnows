@@ -104,8 +104,6 @@ export default function PostPage() {
         </InputGroup>
         <Flex mt="4">
           <InputGroup size="md">
-            <InputLeftElement pointerEvents="none">
-            </InputLeftElement>
             <Input
               type="text"
               value={postContent}
