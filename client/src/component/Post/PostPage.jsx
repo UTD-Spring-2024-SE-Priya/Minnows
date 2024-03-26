@@ -14,10 +14,10 @@ import {
 import PostItem from "./PostItem";
 import { supabase } from '../../db/supabase';
 
-
 export default function PostPage() {
   const [posts, setPosts] = useState([]);
   const [postContent, setPostContent] = useState('');
+  const [postTitle, setPostTitle] = useState('');
 
   const fetchPosts = async () => {
     const { data } = await supabase.from('posts').select('*');
@@ -32,16 +32,20 @@ export default function PostPage() {
     setPostContent(event.target.value);
   };
 
+  const handleTitleChange = (event) => {
+    setPostTitle(event.target.value);
+  };
+
   const submitPost = async () => {
-    if (!postContent) {
-      alert("Please enter some text to create a post.");
+    if (!postContent || !postTitle) {
+      alert("Please enter a title and some text for the post.");
       return;
     }
 
     try {
       const { data, error } = await supabase
         .from('posts')
-        .insert([{ body: postContent }]);
+        .insert([{ title: postTitle, body: postContent }]);
 
       if (error) {
         throw error;
@@ -49,6 +53,7 @@ export default function PostPage() {
 
       if (data) {
         alert("Post created successfully!");
+        setPostTitle('');
         setPostContent('');
         fetchPosts();
       }
@@ -59,7 +64,7 @@ export default function PostPage() {
 
   return (
     <Box p={"1em"} overflowY="auto" position="relative" h={"100%"}>
-      <VStack spacing={"1em"} overflowY="auto" h="calc(100% - 50px)">
+      <VStack spacing={"1em"} overflowY="auto" h="calc(100% - 150px)">
         <Box mt={"1em"} mb={"2em"}>
           <Heading>Name of the Thread</Heading>
           <InputGroup>
@@ -82,27 +87,34 @@ export default function PostPage() {
         ))}
       </VStack>
       <Flex
+        direction="column"
         position="fixed"
         bottom="0"
-        left="0"
+        left="20%"
         right="0"
         p="1em"
-        justifyContent="right"
-        
-        boxShadow="md"
+       
       >
-        <InputGroup size="md" maxWidth="700px">
-          <InputLeftElement pointerEvents="none">
-            <Icon as={IoSearchSharp} />
-          </InputLeftElement>
+        <InputGroup size="md">
           <Input
-            type="text"
-            value={postContent}
-            onChange={handlePostChange}
-            placeholder="Create a post"
+            placeholder="Title of the post"
+            value={postTitle}
+            onChange={handleTitleChange}
           />
         </InputGroup>
-        <Button onClick={submitPost} ml="4">Post</Button>
+        <Flex mt="4">
+          <InputGroup size="md">
+            <InputLeftElement pointerEvents="none">
+            </InputLeftElement>
+            <Input
+              type="text"
+              value={postContent}
+              onChange={handlePostChange}
+              placeholder="Content of the post"
+            />
+          </InputGroup>
+          <Button onClick={submitPost} ml="4">Post</Button>
+        </Flex>
       </Flex>
     </Box>
   );
