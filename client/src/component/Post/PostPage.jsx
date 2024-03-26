@@ -87,11 +87,11 @@ export default function PostPage() {
         left="0"
         right="0"
         p="1em"
-        justifyContent="center"
-        bgColor="white"
+        justifyContent="right"
+        
         boxShadow="md"
       >
-        <InputGroup size="md" maxWidth="600px">
+        <InputGroup size="md" maxWidth="700px">
           <InputLeftElement pointerEvents="none">
             <Icon as={IoSearchSharp} />
           </InputLeftElement>
