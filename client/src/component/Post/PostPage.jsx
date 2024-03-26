@@ -4,14 +4,16 @@ import {
   Box,
   Heading,
   Input,
-  InputGroup,
+  Flex,
   VStack,
   InputLeftElement,
   Icon,
   Button,
+  InputGroup 
 } from "@chakra-ui/react";
 import PostItem from "./PostItem";
 import { supabase } from '../../db/supabase';
+
 
 export default function PostPage() {
   const [posts, setPosts] = useState([]);
@@ -48,7 +50,7 @@ export default function PostPage() {
       if (data) {
         alert("Post created successfully!");
         setPostContent('');
-        fetchPosts(); // Refresh the posts list after a successful creation
+        fetchPosts();
       }
     } catch (error) {
       alert(`Error creating post: ${error.message}`);
@@ -57,31 +59,19 @@ export default function PostPage() {
 
   return (
     <Box p={"1em"} overflowY="auto" position="relative" h={"100%"}>
-      <Box mt={"1em"} mb={"2em"}>
-        <Heading>Name of the Thread</Heading>
-        <InputGroup>
-          <InputLeftElement pointerEvents="none">
-            <Icon as={IoSearchSharp} />
-          </InputLeftElement>
-          <Input
-            type="text"
-            placeholder="Search by author name, title content"
-          />
-        </InputGroup>
-      </Box>
-      <InputGroup mt={"1em"} mb={"2em"}>
-        <InputLeftElement pointerEvents="none">
-          <Icon as={IoSearchSharp} />
-        </InputLeftElement>
-        <Input
-          type="text"
-          value={postContent}
-          onChange={handlePostChange}
-          placeholder="Create a post"
-        />
-        <Button onClick={submitPost}>Post</Button>
-      </InputGroup>
-      <VStack w={"100%"} spacing={"1em"}>
+      <VStack spacing={"1em"} overflowY="auto" h="calc(100% - 50px)">
+        <Box mt={"1em"} mb={"2em"}>
+          <Heading>Name of the Thread</Heading>
+          <InputGroup>
+            <InputLeftElement pointerEvents="none">
+              <Icon as={IoSearchSharp} />
+            </InputLeftElement>
+            <Input
+              type="text"
+              placeholder="Search by author name, title content"
+            />
+          </InputGroup>
+        </Box>
         {posts.map((post, index) => (
           <PostItem
             key={index}
@@ -91,6 +81,29 @@ export default function PostPage() {
           />
         ))}
       </VStack>
+      <Flex
+        position="fixed"
+        bottom="0"
+        left="0"
+        right="0"
+        p="1em"
+        justifyContent="center"
+        bgColor="white"
+        boxShadow="md"
+      >
+        <InputGroup size="md" maxWidth="600px">
+          <InputLeftElement pointerEvents="none">
+            <Icon as={IoSearchSharp} />
+          </InputLeftElement>
+          <Input
+            type="text"
+            value={postContent}
+            onChange={handlePostChange}
+            placeholder="Create a post"
+          />
+        </InputGroup>
+        <Button onClick={submitPost} ml="4">Post</Button>
+      </Flex>
     </Box>
   );
 }
