@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { IoSearchSharp } from "react-icons/io5";
-import supabase from '../../db/supabase';
+import { supabase } from '../../db/supabase';
 
 import {
   Box,
@@ -17,21 +17,14 @@ import PostItem from "./PostItem";
 
 export default function PostPage() {
   const [posts, setPosts] = useState([]);
+  //const [post, setPost] = useState({ title: "", content: ""})
+  //const { title, content } = post;
 
   async function fetchPosts() {
-    try {
-      let { data: posts, error } = await supabase.from('posts').select('*');
-      if (error) {
-        throw error;
-      }
-      setPosts(posts || []);
-    } catch (error) {
-      console.error('Error fetching posts');
-    }
-    setPosts(posts);
-  }
-
-  useState(() => {
+    const { data } = await supabase.from('posts').select('*');
+    setPosts(data);
+}
+  useEffect(() => {
     fetchPosts();
   }, []);
 
@@ -50,12 +43,15 @@ export default function PostPage() {
         </InputGroup>
       </Box>
       <VStack w={"100%"} spacing={"1em"}>
-        {posts.map(post => {
+      {
+        posts.map(post => (
           <PostItem
-            title = {post.title}
-            content = {post.content}
-          />
-        })}
+          authorName = { post.author_id }
+            title = { post.title }  
+            content = { post.body }
+            />
+        ))
+      }    
       </VStack>
     </Box>
   );
