@@ -29,7 +29,7 @@ export default function PostPage() {
   };
 
   const submitPost = async () => {
-    if (!title || !content) {
+    if (!title.trim() || !content.trim() ) {
       alert("Please enter a title and some text for the post.");
       return;
     }
@@ -65,6 +65,7 @@ export default function PostPage() {
               <Icon as={IoSearchSharp} />
             </InputLeftElement>
             <Input
+
               type="text"
               placeholder="Search by author name, title content"
             />
@@ -94,6 +95,8 @@ export default function PostPage() {
           <Input
             placeholder="Title of the post"
             value={title}
+            maxLength={"30"}
+            minLength={"1"}
             onChange={e => setPost({ ...post, title: e.target.value })}
           />
         </InputGroup>
@@ -102,6 +105,8 @@ export default function PostPage() {
             <Input
               placeholder="Content of the post"
               value={content}
+              maxLength={"300"}
+              minLength={"1"}
               onChange={e => setPost({ ...post, content: e.target.value })}
             />
           </InputGroup>
