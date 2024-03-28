@@ -16,28 +16,20 @@ import { supabase } from '../../db/supabase';
 
 export default function PostPage() {
   const [posts, setPosts] = useState([]);
-  const [postContent, setPostContent] = useState('');
-  const [postTitle, setPostTitle] = useState('');
-
-  const fetchPosts = async () => {
-    const { data } = await supabase.from('posts').select('*');
-    setPosts(data);
-  };
+  const [post, setPost] = useState({ title: "", content: "" });
+  const { title, content } = post;
 
   useEffect(() => {
     fetchPosts();
   }, []);
-
-  const handlePostChange = (event) => {
-    setPostContent(event.target.value);
-  };
-
-  const handleTitleChange = (event) => {
-    setPostTitle(event.target.value);
+  
+  async function fetchPosts() {
+    const { data } = await supabase.from('posts').select('*');
+    setPosts(data);
   };
 
   const submitPost = async () => {
-    if (!postContent || !postTitle) {
+    if (!title || !content) {
       alert("Please enter a title and some text for the post.");
       return;
     }
@@ -45,7 +37,9 @@ export default function PostPage() {
     try {
       const { data, error } = await supabase
         .from('posts')
-        .insert([{ title: postTitle, body: postContent }]);
+        .insert([{ title: title, body: content }]).single();
+        setPost({ title: "", content: ""});
+        fetchPosts();
 
       if (error) {
         throw error;
@@ -53,19 +47,18 @@ export default function PostPage() {
 
       if (data) {
         alert("Post created successfully!");
-        setPostTitle('');
-        setPostContent('');
+        setPost({ title: "", content: ""});
         fetchPosts();
       }
     } catch (error) {
       alert(`Error creating post: ${error.message}`);
+      fetchPosts();
     }
   };
 
   return (
     <Box p={"1em"} overflowY="auto" position="relative" h={"100%"}>
-      <VStack spacing={"1em"} overflowY="auto" h="calc(100% - 150px)">
-        <Box mt={"1em"} mb={"2em"}>
+       <Box mt={"1em"} mb={"2em"} position = "fixed" top = "0">
           <Heading>Name of the Thread</Heading>
           <InputGroup>
             <InputLeftElement pointerEvents="none">
@@ -77,6 +70,8 @@ export default function PostPage() {
             />
           </InputGroup>
         </Box>
+       
+      <VStack spacing={"1em"} overflowY="auto" h="75%" mt="6em" pb="10em">
         {posts.map((post, index) => (
           <PostItem
             key={index}
@@ -93,22 +88,21 @@ export default function PostPage() {
         left="20%"
         right="0"
         p="1em"
-       
+        bg = "white"
       >
         <InputGroup size="md">
           <Input
             placeholder="Title of the post"
-            value={postTitle}
-            onChange={handleTitleChange}
+            value={title}
+            onChange={e => setPost({ ...post, title: e.target.value })}
           />
         </InputGroup>
         <Flex mt="4">
           <InputGroup size="md">
             <Input
-              type="text"
-              value={postContent}
-              onChange={handlePostChange}
               placeholder="Content of the post"
+              value={content}
+              onChange={e => setPost({ ...post, content: e.target.value })}
             />
           </InputGroup>
           <Button onClick={submitPost} ml="4">Post</Button>
