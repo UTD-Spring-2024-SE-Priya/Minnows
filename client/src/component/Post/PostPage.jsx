@@ -13,12 +13,17 @@ import {
 } from "@chakra-ui/react";
 import PostItem from "./PostItem";
 import { supabase } from '../../db/supabase';
+import { postController } from '../../api/postController'
 
 export default function PostPage() {
   const [posts, setPosts] = useState([]);
-  //const [post, setPost] = useState({ title: "", content: ""})
-  //const { title, content } = post;
+  const [post, setPost] = useState({ title: "", content: "" });
+  const { title, content } = post;
 
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+  
   async function fetchPosts() {
     const { data } = await supabase.from('posts').select('*');
     setPosts(data);
